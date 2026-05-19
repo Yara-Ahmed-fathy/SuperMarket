@@ -1,0 +1,240 @@
+<!Doctype html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="utf-8" >
+  <title> Supermarket </title>
+  <style>
+    /* Brown palette */
+    :root{
+      --brown-900: #3a2b22; /* very dark */
+      --brown-800: #5a4035;
+      --brown-700: #7a5a4a;
+      --brown-600: #9a7a65;
+      --brown-500: #b89a83; /* mid */
+      --cream: #f6efe9; /* background */
+      --accent: #c36f2d; /* warm accent */
+      --muted: #e6dcd3;
+      --glass: rgba(255,255,255,0.06);
+      --card-shadow: 0 6px 18px rgba(26,18,14,0.12);
+    }
+
+    /* Reset & base */
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: 'Segoe UI', Tahoma, Verdana, 'Noto Sans Arabic', system-ui, sans-serif;
+      background: linear-gradient(180deg,var(--cream), #fff);
+      color:var(--brown-900);
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      line-height:1.45;
+      padding:24px;
+    }
+
+    .container{max-width:1150px;margin:0 auto}
+
+    /* Header */
+    header{
+      display:flex;align-items:center;justify-content:space-between;
+      gap:16px;padding:18px;border-radius:14px;background:linear-gradient(180deg,var(--brown-600),var(--brown-700));color:var(--cream);
+      box-shadow:var(--card-shadow);
+    }
+    .brand{display:flex;align-items:center;gap:12px}
+    .logo{
+      width:56px;height:56px;border-radius:10px;background:linear-gradient(135deg,var(--accent),var(--brown-900));display:flex;align-items:center;justify-content:center;font-weight:700;font-size:18px;color:var(--cream);box-shadow:0 6px 18px rgba(0,0,0,0.15)
+    }
+    .brand h1{margin:0;font-size:20px}
+    .brand p{margin:0;font-size:12px;opacity:0.95}
+
+    nav{display:flex;gap:12px;align-items:center}
+    .nav-link{padding:8px 12px;border-radius:8px;color:var(--cream);text-decoration:none;font-weight:600;opacity:0.95}
+    .nav-link:hover{background:rgba(255,255,255,0.06)}
+
+    /* Search & cart */
+    .actions{display:flex;gap:12px;align-items:center}
+    .search{
+      display:flex;align-items:center;background:var(--muted);padding:8px;border-radius:12px;gap:8px;width:320px
+    }
+    .search input{flex:1;border:0;background:transparent;outline:none;padding:6px 8px;font-size:14px}
+    .cart{background:var(--cream);padding:8px 12px;border-radius:10px;color:var(--brown-900);font-weight:700}
+
+    /* Hero */
+    .hero{display:grid;grid-template-columns:1fr 360px;gap:22px;margin-top:20px}
+    .hero-card{padding:28px;border-radius:14px;background:linear-gradient(180deg,rgba(255,255,255,0.9),var(--cream));box-shadow:var(--card-shadow)}
+    .hero h2{margin:0 0 8px 0;font-size:26px;color:var(--brown-900)}
+    .hero p{margin:0 0 16px 0;color:var(--brown-700)}
+    .cta{display:inline-block;padding:12px 18px;border-radius:10px;background:var(--accent);color:var(--cream);text-decoration:none;font-weight:700}
+
+    .promo{
+      padding:18px;border-radius:12px;background:linear-gradient(180deg,var(--brown-800),var(--brown-700));color:var(--cream);height:100%;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center
+    }
+    .promo h3{margin:0 0 8px 0}
+    .promo p{margin:0;font-size:14px;opacity:0.95}
+
+    /* Categories */
+    .categories{display:flex;gap:12px;margin-top:20px;margin-bottom:18px;overflow-x:auto;padding-bottom:8px}
+    .cat{min-width:130px;padding:12px;border-radius:12px;background:var(--glass);backdrop-filter: blur(4px);border:1px solid rgba(26,18,14,0.05);text-align:center}
+    .cat img{width:60px;height:60px;border-radius:8px;object-fit:cover}
+    .cat p{margin:8px 0 0 0;font-weight:700}
+
+    /* Product grid */
+    .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:18px}
+    .card{background:linear-gradient(180deg,var(--cream),#fff);padding:14px;border-radius:12px;border:1px solid rgba(26,18,14,0.04);box-shadow:0 8px 20px rgba(26,18,14,0.06)}
+    .card img{width:100%;height:140px;object-fit:cover;border-radius:8px}
+    .card h4{margin:10px 0 6px 0;font-size:16px}
+    .price-row{display:flex;justify-content:space-between;align-items:center;gap:8px}
+    .price{font-weight:800;color:var(--brown-900)}
+    .old{font-size:13px;text-decoration:line-through;color:var(--brown-600);opacity:0.9}
+    .add{padding:8px 10px;border-radius:10px;background:var(--brown-800);color:var(--cream);font-weight:700;border:0}
+
+    /* Footer */
+    footer{margin-top:28px;padding:18px;border-radius:12px;background:linear-gradient(180deg,var(--brown-700),var(--brown-800));color:var(--cream);display:flex;justify-content:space-between;align-items:center}
+    footer small{opacity:0.95}
+
+    /* Responsiveness */
+    @media (max-width:880px){
+      .hero{grid-template-columns:1fr}
+      .search{width:100%}
+      header{flex-direction:column;align-items:flex-start;gap:12px}
+      nav{order:3;width:100%;overflow:auto}
+    }
+
+  </style>
+</head>
+<body>
+  
+   
+  <div class="container">
+    <header>
+      <div class="brand">
+        <div class="logo">VS</div>
+        <div>
+          <h1>vision system </h1>
+          <p>Quality you trust , prices you will love , every single day</p>
+        </div>
+      </div>
+
+      <nav>
+        <a class="nav-link" href="#">Home</a>
+        <a class="nav-link" href="#categories">Categories</a>
+        <a class="nav-link" href="#offers">Offers</a>
+        <a class="nav-link" href="#contact">Contact</a>
+      </nav>
+
+      <div class="actions">
+        <div class="search" role="search">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M21 21l-4.35-4.35" stroke="#7a5a4a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="11" cy="11" r="6" stroke="#7a5a4a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <input placeholder="Search...." aria-label="search" />
+        </div>
+        <div class="cart">Cart 0 </div>
+      </div>
+    </header>
+
+    <section class="hero">
+      <div class="hero-card">
+        <h2>fresh choices , fiendly prices , everything you need in one place </h2>
+        <p>Discounts</p>
+        <a class="cta" href="#offers">Offers</a>
+
+        <div style="margin-top:18px">
+          <h4 style="margin:0 0 8px 0">Special products</h4>
+          <div style="display:flex;gap:10px;flex-wrap:wrap">
+            <div class="card" style="width:140px;padding:10px">
+              <img src="nescafe img.jpg" alt="Coffe">
+              <h4 style="font-size:14px">Nescafe</h4>
+              <div class="price-row"><div class="price">EGP 120</div><button class="add">+</button></div>
+            </div>
+            <div class="card" style="width:140px;padding:10px">
+              <img src="lip img.webp" alt="tea" />
+              <h4 style="font-size:14px">Lipton tea</h4>
+              <div class="price-row"><div class="price">EGP 45</div><button class="add">+</button></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <aside class="promo">
+        <h3 id="offers">20% off on your first purchase </h3>
+        <p>Delivery within 24 hours </p>
+      </aside>
+    </section>
+
+    <section id="categories" class="categories" aria-label="Categories">
+      <div class="cat">
+        <img src="download.webp" alt="">
+        <p>Legumes</p>
+      </div>
+      <div class="cat">
+        <img src="imgurl_https___annabaa.org_aarticles_fileM_23_5c21d19ec4c1f.jpg - Search_files/5c21d19ec4c1f.jpg" alt="" />
+        <p>Drinks</p>
+      </div>
+      <div class="cat">
+        <img src="imgurl_https___annabaa.org_aarticles_fileM_23_5c21d19ec4c1f.jpg - Search_files/pngtree-various-baked-sweets-picture-image_3021210.jpg" alt="" />
+        <p>Baked goods</p>
+      </div>
+      <div class="cat">
+        <img src="pngtree-large-variety-of-fruits-and-vegetables-covered-in-wallpaper-picture-image_2615032.jpg" alt="" />
+        <p>Fruits and vegetables</p>
+      </div>
+    </section>
+
+    <section class="grid" aria-label="Products">
+      <!-- sample product card -->
+      <article class="card">
+        <img src="e276f802-16e3-47ac-abdd-9ffcbd23ce14.jpg" alt="" />
+        <h4>olive oil</h4>
+        <p class="old">EGP 220</p>
+        <div class="price-row">
+          <div>
+            <div class="price">EGP 199</div>
+            <div style="font-size:12px;color:var(--brown-600)">500 مل</div>
+          </div>
+          <div>
+            <button class="add">Add</button>
+          </div>
+        </div>
+      </article>
+
+      <article class="card">
+        <img src="OIP (1).jpg" alt="" />
+        <h4>Natural honey</h4>
+        <div class="price-row">
+          <div class="price">EGP 150</div>
+          <button class="add">Add</button>
+        </div>
+      </article>
+
+      <article class="card">
+        <img src="OIP.jpg" alt="" />
+        <h4>macaroni</h4>
+        <div class="price-row">
+          <div class="price">EGP 28</div>
+          <button class="add">Add</button>
+        </div>
+      </article>
+
+      <article class="card">
+        <img src="white cheese img.jpeg" alt="" />
+        <h4>cheese</h4>
+        <div class="price-row">
+          <div class="price">EGP 65</div>
+          <button class="add">Add</button>
+        </div>
+      </article>
+
+    </section>
+
+    <footer id="contact">
+      <small>© 2025 Brown Mart _Delivery within the city. Contact us.: 0123-456-789</small>
+      <div style="display:flex;gap:10px;align-items:center">
+        <small>follow us:</small>
+        <div style="display:flex;gap:8px">
+          <div style="width:34px;height:34px;border-radius:8px;background:var(--muted);display:flex;align-items:center;justify-content:center">FB</div>
+          <div style="width:34px;height:34px;border-radius:8px;background:var(--muted);display:flex;align-items:center;justify-content:center">IG</div>
+        </div>
+      </div>
+    </footer>
+  </div>
+</body>
+</html>
